@@ -25,9 +25,9 @@ from background_worker import pump_worker, check_worker, cleaner_worker
 
 # Создаем планировщик
 scheduler = BackgroundScheduler()
-scheduler.add_job(pump_worker, 'interval', seconds=30) # 30
-scheduler.add_job(check_worker, 'interval', seconds=30) # 180
-scheduler.add_job(cleaner_worker, 'interval', seconds=10) # 60
+scheduler.add_job(pump_worker, 'interval', seconds=30)
+scheduler.add_job(check_worker, 'interval', seconds=30)
+scheduler.add_job(cleaner_worker, 'interval', seconds=180)
 
 scheduler.start()
 
