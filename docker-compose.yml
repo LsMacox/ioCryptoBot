@@ -1,0 +1,33 @@
+version: '3'
+
+networks:
+  default:
+    name: 'iocryptobot'
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    networks:
+      - default
+    depends_on:
+      - mysql
+    dns:
+      8.8.8.8
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - "MYSQL_ALLOW_EMPTY_PASSWORD=true"
+      - "DATABASE_URL=mysql://mansur_sheikh:mansur_krasava@mysql/main"
+    ports:
+      - "33060:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./src/stuff/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+       - default
+
+volumes:
+  mysql-data:
