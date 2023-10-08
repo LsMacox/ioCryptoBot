@@ -25,9 +25,9 @@ from background_worker import pump_worker, check_worker, cleaner_worker
 
 # Создаем планировщик
 scheduler = BackgroundScheduler()
-scheduler.add_job(pump_worker, 'interval', seconds=30)
-scheduler.add_job(check_worker, 'interval', seconds=30)
-scheduler.add_job(cleaner_worker, 'interval', seconds=180)
+scheduler.add_job(pump_worker, 'interval', seconds=int(getenv('MIN_PUMP_INTERVAL')))
+scheduler.add_job(check_worker, 'interval', seconds=int(getenv('MIN_PUMP_INTERVAL')))
+scheduler.add_job(cleaner_worker, 'interval', seconds=int(getenv('MAX_PUMP_INTERVAL')) / 2)
 
 scheduler.start()
 

@@ -8,6 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 
+
 def pump_worker():
     exchanger_data = getExchangerData()
 
@@ -88,6 +89,7 @@ def check_worker():
 
             with ThreadPoolExecutor(max_workers=3) as executor:
                 results = list(executor.map(fetch_url, send_message_urls))
+
 
 def cleaner_worker():
     with Database() as db:

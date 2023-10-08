@@ -1,9 +1,7 @@
 from telegram.ext import ContextTypes, ConversationHandler
 from telegram import Update
-from logger import logger
 from enver import getenv
 import states
-import time
 from database import Database
 
 
